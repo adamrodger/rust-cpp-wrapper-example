@@ -1,0 +1,6 @@
+.idea/
+artifacts/
+target/
+*.gch
+*.o
+*.so

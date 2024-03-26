@@ -1,11 +1,19 @@
 #ifndef COUNTER_H
 #define COUNTER_H
 
+#ifdef _WIN32
+#  define EXPORT __declspec(dllexport)
+#elif __linux__
+#  define EXPORT
+#else
+#  error Unsupported platform
+#endif
+
 #include <vector>
 
 namespace counter {
 
-class Counter {
+class EXPORT Counter {
 public:
     Counter(unsigned int initialValue);
 

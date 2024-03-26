@@ -33,14 +33,27 @@ Building
 
 Pre-requisites:
 
-- A recent C++ compiler installed and in a location where `cc` can find it. This example uses LLVM.
+- A recent C++ compiler installed and in a location where `cc` can find it
+- LLVM installed and in a location where `bindgen` can find it (see the `bindgen` docs for requirements)
+    - On Windows I installed the Clang component supplied with Visual Studio and then set the `LIBCLANG_PATH` env var to
+      the location of `libclang.dll`, which for me was `C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\Llvm\x64\bin`
 - A recent Rust toolchain
 
-First build `counter-cpp` and output the result to the `artifacts/` folder:
+First build `counter-cpp` and output the result to the `artifacts/` folder.
+
+On Linux:
 
 ```bash
 mkdir -p artifacts
 c++ -shared -o artifacts/libcounter.so counter-cpp/Counter.cc
+```
+
+On Windows:
+
+```bash
+mkdir artifacts
+cd artifacts
+cl /LD /EHsc ..\counter-cpp\Counter.cc
 ```
 
 This mirrors the situation in which someone else has built the library you're going to link against rather than it being
